@@ -2,13 +2,17 @@ package com.example.springbootdemo.rest;
 
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class WebController {
 
-    Counter visitCounter;
+    private Counter visitCounter;
+
+    @Value("${text.content}")
+    private String textContent;
 
     public WebController(MeterRegistry registry) {
         visitCounter = Counter.builder("visit_counter")
@@ -19,6 +23,6 @@ public class WebController {
     @GetMapping("/")
     public String index() {
         visitCounter.increment();
-        return "Hello World!";
+        return textContent;
     }
 }
