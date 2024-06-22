@@ -1,6 +1,13 @@
 # Getting Started
 
-### Local Test
+### IDE setting for auto compile
+執行以下設定後，開發時只要修改程式碼，開發環境會重新編譯程式碼並重啟本機伺服器
+```shell
+Settings --> Bulid,Execution,Deployment --> Compiler --> check Build project automatically
+Settings --> Advanced Settings --> check Allow auto-make to start even if developed application is currently running
+```
+
+### Container Test
 ```shell
 brew install mvnvm // 安裝打包套件
 mvn clean install  // 打包spring boot專案，產出deploy用的jar檔
@@ -8,7 +15,8 @@ mv ./target/SpringBootDemo-0.0.1-SNAPSHOT.jar ./application.jar
 docker build -t springio/gs-spring-boot-docker --no-cache  .
 docker run -p 8080:8080 springio/gs-spring-boot-docker
 ```
-### Upload to GCP
+
+### Upload image to GCP
 要先產生好Artifact Registry Repo(例如asia-east1-docker.pkg.dev/lab-423307/demo)
 
 否則上傳image會失敗
